@@ -6,7 +6,7 @@ import platform
 import glob
 
 from setuptools import setup, find_packages
-import torch.utils.cpp_extension
+from torch.utils.cpp_extension import CppExtension
 
 this_file = os.path.dirname(__file__)
 
@@ -50,7 +50,7 @@ third_party_includes=[os.path.realpath(os.path.join("third_party", lib)) for lib
 ctc_sources = ['ctcdecode/src/cpu_binding.cpp', 'ctcdecode/src/util/status.cpp']
 ctc_headers = ['ctcdecode/src/cpu_binding.h',]
 
-ffi = create_extension(
+ffi = CppExtension(
     name='ctcdecode._ext.ctc_decode',
     package=True,
     language='c++',
@@ -62,7 +62,7 @@ ffi = create_extension(
     relative_to=__file__,
     with_cuda=False
 )
-ffi = ffi.distutils_extension()
+# ffi = ffi.distutils_extension()
 
 setup(
     name="ctcdecode",
