@@ -6,7 +6,7 @@ import platform
 import glob
 
 from setuptools import setup, find_packages
-from torch.utils.ffi import create_extension
+import torch.utils.cpp_extension
 
 this_file = os.path.dirname(__file__)
 
